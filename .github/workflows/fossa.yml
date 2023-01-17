@@ -1,0 +1,26 @@
+name: FOSSA CLI Analysis + Test
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+#     env:
+#       FOSSA_API_KEY: ${{secrets.FOSSA_API_KEY}}
+
+    strategy:
+      fail-fast: false
+
+    steps:
+      - uses: actions/checkout@v3
+  
+      - uses: fossas/fossa-action@1b87cccfdc2c2d280109da875327e93a
+        with:
+          api-key: ${{secrets.FOSSA_API_KEY}}
+          project: 'something-cool-20251'
+
